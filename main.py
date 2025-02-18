@@ -13,7 +13,7 @@ def get_chromecasts():
     for cast in chromecasts:
         if cast.name == TARGET_DEVICE_NAME:
             cast.wait()
-            print(cast.status.volume_level)
+            print(f"Current volume: {cast.status.volume_level * 100:.0f}%")
             browser.stop_discovery()
             print(f"Connected to Chromecast: {cast.name}")
             return cast
@@ -32,7 +32,7 @@ def monitor_volume():
         try:
             current_volume = cast.status.volume_level  # Get volume level
 
-            print(f"Current volume: {current_volume * 100:.0f}%")
+            # print(f"Current volume: {current_volume * 100:.0f}%")
 
             if current_volume > MAX_VOLUME:
                 print(f"Volume too high! Lowering to {SAFE_VOLUME * 100:.0f}%")
