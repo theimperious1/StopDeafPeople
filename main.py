@@ -3,6 +3,7 @@ import pychromecast
 
 # Configuration
 DEVICE_IP = "192.168.0.203"  # Your Chromecast's IP
+TARGET_DEVICE_NAME = 'Master Bedroom TV'  # Your Target Device's Name
 MAX_VOLUME = 0.61  # Maximum allowed volume (0.0 - 1.0)
 SAFE_VOLUME = 0.6  # Volume to set when it's too high
 CHECK_INTERVAL = 2  # Time (seconds) between checks
@@ -10,7 +11,7 @@ CHECK_INTERVAL = 2  # Time (seconds) between checks
 def get_chromecasts():
     chromecasts, browser = pychromecast.get_listed_chromecasts(friendly_names=["Master Bedroom TV"])
     for cast in chromecasts:
-        if cast.name == 'Master Bedroom TV':
+        if cast.name == TARGET_DEVICE_NAME:
             cast.wait()
             print(cast.status.volume_level)
             browser.stop_discovery()
